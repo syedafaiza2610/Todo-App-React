@@ -1,16 +1,18 @@
 import { useState } from "react";
+import { BiCheck } from "react-icons/bi";
 
 export const TodoForm = ({ onAddTodo }) => {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState({});
 
   const handleInputChange = (value) => {
-    setInputValue(value);
+    // now i need id , content , checked
+    setInputValue({id: value , content:value, checked: false});
   };
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
     onAddTodo(inputValue);
-    setInputValue(""); //input empty krne k lye 
+    setInputValue({id: "" , content:"", checked: ""}); //input empty krne k lye 
    
   };
 
@@ -22,7 +24,7 @@ export const TodoForm = ({ onAddTodo }) => {
             type="text"
             className="todo-input"
             autoComplete="off"
-            value={inputValue}
+            value={inputValue.content}
             onChange={(event) => handleInputChange(event.target.value)}
           />
         </div>
